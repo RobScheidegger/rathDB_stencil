@@ -1,0 +1,367 @@
+Start testing: Jul 05 21:19 EDT
+----------------------------------------------------------
+1/14 Testing: Database.GetPutBasic
+1/14 Test: Database.GetPutBasic
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/db/test_db" "--gtest_filter=Database.GetPutBasic"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/db
+"Database.GetPutBasic" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = Database.GetPutBasic
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Database
+[ RUN      ] Database.GetPutBasic
+[       OK ] Database.GetPutBasic (0 ms)
+[----------] 1 test from Database (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"Database.GetPutBasic" end time: Jul 05 21:19 EDT
+"Database.GetPutBasic" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/14 Testing: Database.DeleteBasic
+2/14 Test: Database.DeleteBasic
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/db/test_db" "--gtest_filter=Database.DeleteBasic"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/db
+"Database.DeleteBasic" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = Database.DeleteBasic
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Database
+[ RUN      ] Database.DeleteBasic
+[       OK ] Database.DeleteBasic (0 ms)
+[----------] 1 test from Database (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"Database.DeleteBasic" end time: Jul 05 21:19 EDT
+"Database.DeleteBasic" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/14 Testing: Database.BatchGetPutBasic
+3/14 Test: Database.BatchGetPutBasic
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/db/test_db" "--gtest_filter=Database.BatchGetPutBasic"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/db
+"Database.BatchGetPutBasic" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = Database.BatchGetPutBasic
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Database
+[ RUN      ] Database.BatchGetPutBasic
+[       OK ] Database.BatchGetPutBasic (0 ms)
+[----------] 1 test from Database (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"Database.BatchGetPutBasic" end time: Jul 05 21:19 EDT
+"Database.BatchGetPutBasic" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/14 Testing: Database.BatchGetPutWithDelete
+4/14 Test: Database.BatchGetPutWithDelete
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/db/test_db" "--gtest_filter=Database.BatchGetPutWithDelete"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/db
+"Database.BatchGetPutWithDelete" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = Database.BatchGetPutWithDelete
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Database
+[ RUN      ] Database.BatchGetPutWithDelete
+[       OK ] Database.BatchGetPutWithDelete (0 ms)
+[----------] 1 test from Database (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"Database.BatchGetPutWithDelete" end time: Jul 05 21:19 EDT
+"Database.BatchGetPutWithDelete" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/14 Testing: Crypto.Hash
+5/14 Test: Crypto.Hash
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/test_crypto" "--gtest_filter=Crypto.Hash"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/crypto
+"Crypto.Hash" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = Crypto.Hash
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Crypto
+[ RUN      ] Crypto.Hash
+[       OK ] Crypto.Hash (0 ms)
+[----------] 1 test from Crypto (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"Crypto.Hash" end time: Jul 05 21:19 EDT
+"Crypto.Hash" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/14 Testing: Block.Serialization
+6/14 Test: Block.Serialization
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/test_primitives" "--gtest_filter=Block.Serialization"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/primitives
+"Block.Serialization" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = Block.Serialization
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Block
+[ RUN      ] Block.Serialization
+[       OK ] Block.Serialization (0 ms)
+[----------] 1 test from Block (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"Block.Serialization" end time: Jul 05 21:19 EDT
+"Block.Serialization" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/14 Testing: BlockHeader.Serialization
+7/14 Test: BlockHeader.Serialization
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/test_primitives" "--gtest_filter=BlockHeader.Serialization"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/primitives
+"BlockHeader.Serialization" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = BlockHeader.Serialization
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from BlockHeader
+[ RUN      ] BlockHeader.Serialization
+[       OK ] BlockHeader.Serialization (0 ms)
+[----------] 1 test from BlockHeader (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"BlockHeader.Serialization" end time: Jul 05 21:19 EDT
+"BlockHeader.Serialization" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/14 Testing: Transaction.Serialization
+8/14 Test: Transaction.Serialization
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/test_primitives" "--gtest_filter=Transaction.Serialization"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/primitives
+"Transaction.Serialization" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = Transaction.Serialization
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Transaction
+[ RUN      ] Transaction.Serialization
+[       OK ] Transaction.Serialization (0 ms)
+[----------] 1 test from Transaction (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"Transaction.Serialization" end time: Jul 05 21:19 EDT
+"Transaction.Serialization" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/14 Testing: TransactionInput.Serialization
+9/14 Test: TransactionInput.Serialization
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/test_primitives" "--gtest_filter=TransactionInput.Serialization"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/primitives
+"TransactionInput.Serialization" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = TransactionInput.Serialization
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TransactionInput
+[ RUN      ] TransactionInput.Serialization
+[       OK ] TransactionInput.Serialization (0 ms)
+[----------] 1 test from TransactionInput (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TransactionInput.Serialization" end time: Jul 05 21:19 EDT
+"TransactionInput.Serialization" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/14 Testing: TransactionOutput.Serialization
+10/14 Test: TransactionOutput.Serialization
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/test_primitives" "--gtest_filter=TransactionOutput.Serialization"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/primitives
+"TransactionOutput.Serialization" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = TransactionOutput.Serialization
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TransactionOutput
+[ RUN      ] TransactionOutput.Serialization
+[       OK ] TransactionOutput.Serialization (0 ms)
+[----------] 1 test from TransactionOutput (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TransactionOutput.Serialization" end time: Jul 05 21:19 EDT
+"TransactionOutput.Serialization" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/14 Testing: BlockRecord.Serializaiton
+11/14 Test: BlockRecord.Serializaiton
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/test_block_info_database" "--gtest_filter=BlockRecord.Serializaiton"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database
+"BlockRecord.Serializaiton" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = BlockRecord.Serializaiton
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from BlockRecord
+[ RUN      ] BlockRecord.Serializaiton
+[       OK ] BlockRecord.Serializaiton (0 ms)
+[----------] 1 test from BlockRecord (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"BlockRecord.Serializaiton" end time: Jul 05 21:19 EDT
+"BlockRecord.Serializaiton" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/14 Testing: UndoBlock.Serializaiton
+12/14 Test: UndoBlock.Serializaiton
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/test_block_info_database" "--gtest_filter=UndoBlock.Serializaiton"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database
+"UndoBlock.Serializaiton" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = UndoBlock.Serializaiton
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from UndoBlock
+[ RUN      ] UndoBlock.Serializaiton
+[       OK ] UndoBlock.Serializaiton (0 ms)
+[----------] 1 test from UndoBlock (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"UndoBlock.Serializaiton" end time: Jul 05 21:19 EDT
+"UndoBlock.Serializaiton" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/14 Testing: CoinLocator.Serialize
+13/14 Test: CoinLocator.Serialize
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/test_coin_database" "--gtest_filter=CoinLocator.Serialize"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/coin_database
+"CoinLocator.Serialize" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = CoinLocator.Serialize
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CoinLocator
+[ RUN      ] CoinLocator.Serialize
+[       OK ] CoinLocator.Serialize (0 ms)
+[----------] 1 test from CoinLocator (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"CoinLocator.Serialize" end time: Jul 05 21:19 EDT
+"CoinLocator.Serialize" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/14 Testing: CoinRecord.Serialize
+14/14 Test: CoinRecord.Serialize
+Command: "/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/test_coin_database" "--gtest_filter=CoinRecord.Serialize"
+Directory: /home/robert/classes/csci1951l/rathDB_stencil/test/coin_database
+"CoinRecord.Serialize" start time: Jul 05 21:19 EDT
+Output:
+----------------------------------------------------------
+Note: Google Test filter = CoinRecord.Serialize
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CoinRecord
+[ RUN      ] CoinRecord.Serialize
+[       OK ] CoinRecord.Serialize (0 ms)
+[----------] 1 test from CoinRecord (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"CoinRecord.Serialize" end time: Jul 05 21:19 EDT
+"CoinRecord.Serialize" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jul 05 21:19 EDT

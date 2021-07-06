@@ -30,3 +30,31 @@ std::string CoinLocator::serialize_from_construct(uint32_t transaction_hash, uin
     return std::to_string(transaction_hash) + "-" +
            std::to_string(output_index);
 }
+
+bool CoinDatabase::validate_block(const std::vector<std::unique_ptr<Transaction>>& transactions)
+{
+    for(const auto& transaction : transactions)
+    {
+        if(!validate_transaction(*transaction.get()))
+            return false;
+    }
+    return true;
+}
+
+//Validate transaction should just check that the inputs of each transaction are actually referencing real UTXO.
+// To check for this, you should query the main cache.
+// Note, if the main cache does not have this information, you must query the database
+// as well. These should probably be helper methods.
+bool CoinDatabase::validate_transaction(const Transaction& transaction)
+{
+    auto inputs = &transaction.transaction_inputs;
+
+    auto remaining_inputs = &find_inputs_in_main_cache(&inputs);
+
+
+}
+
+std::vector<std::unique_ptr<TransactionInput>> CoinDatabase::find_inputs_in_main_cache(std::vector<std::unique_ptr<TransactionInput>>& inputs)
+{
+
+}

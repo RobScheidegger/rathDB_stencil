@@ -1,0 +1,2 @@
+/usr/bin/ar qc libprimitives.a CMakeFiles/primitives.dir/src/primitives/block.cpp.o CMakeFiles/primitives.dir/src/primitives/block_header.cpp.o CMakeFiles/primitives.dir/src/primitives/transaction.cpp.o CMakeFiles/primitives.dir/src/primitives/transaction_input.cpp.o CMakeFiles/primitives.dir/src/primitives/transaction_output.cpp.o
+/usr/bin/ranlib libprimitives.a

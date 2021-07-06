@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/test_db.dir/db_tests.cpp.o CMakeFiles/test_db.dir/main.cpp.o -o test_db  ../../core/libdb.a ../../lib/libgtest.a -lpthread 

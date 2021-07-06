@@ -69,6 +69,9 @@ public:
     std::vector<std::pair<uint32_t, uint8_t>> get_all_utxo(uint32_t public_key);
     void flush_main_cache();
 
+    //Helper Functions
+    std::vector<std::unique_ptr<TransactionInput>> find_inputs_in_main_cache(std::vector<std::unique_ptr<TransactionInput>> inputs);
+
 };
 
 #endif //RATHDB_STENCIL_COIN_DATABASE_H

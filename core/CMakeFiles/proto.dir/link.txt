@@ -1,0 +1,2 @@
+/usr/bin/ar qc libproto.a CMakeFiles/proto.dir/src/proto/rath.pb.cc.o
+/usr/bin/ranlib libproto.a

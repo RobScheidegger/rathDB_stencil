@@ -15,7 +15,9 @@ CoinRecord::CoinRecord(uint8_t version_,
                        std::vector<uint32_t> public_keys_)
         : version(version_), utxo(std::move(utxo_)),
           amounts(std::move(amounts_)),
-          public_keys(std::move(public_keys_)) {}
+          public_keys(std::move(public_keys_)) {
+
+}
 
 std::string CoinRecord::serialize(const CoinRecord& coin_record) {
     PCoinRecord pcoin_record = PCoinRecord();

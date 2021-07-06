@@ -11,6 +11,7 @@
 #define RATH_TRANSACTION_INPUT_H
 
 #include <string>
+#include <memory>
 
 class TransactionInput {
 public:
