@@ -1,3 +1,0 @@
-/home/robert/classes/csci1951l/rathDB_stencil/test/googletest-download/CMakeFiles/rebuild_cache.dir
-/home/robert/classes/csci1951l/rathDB_stencil/test/googletest-download/CMakeFiles/edit_cache.dir
-/home/robert/classes/csci1951l/rathDB_stencil/test/googletest-download/CMakeFiles/googletest.dir
