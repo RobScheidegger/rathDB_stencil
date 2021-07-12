@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="rathDB"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\googletest-src\;CMake Files\googletest-src\googlemock\;CMake Files\googletest-src\googlemock\cmake\;CMake Files\googletest-src\googletest\;CMake Files\googletest-src\googletest\cmake\;CMake Files\core\;CMake Files\test\;CMake Files\test\chain_writer\;CMake Files\test\db\;CMake Files\test\crypto\;CMake Files\test\primitives\;CMake Files\test\block_info_database\;CMake Files\test\coin_database\;CMake Files\test\chain\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test">
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 test"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crypto">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/core/libcrypto.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 crypto"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crypto/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/core/libcrypto.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 crypto/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="primitives">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/core/libprimitives.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 primitives"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="primitives/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/core/libprimitives.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 primitives/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="proto">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/core/libproto.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 proto"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="proto/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/core/libproto.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 proto/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="db">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/core/libdb.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 db"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="db/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/core/libdb.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 db/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rathDB">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/core/librathDB.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 rathDB"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rathDB/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/core/librathDB.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 rathDB/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock_main">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/lib/libgmock_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 gmock_main"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock_main/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/lib/libgmock_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 gmock_main/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/lib/libgmockd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 gmock"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/lib/libgmockd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 gmock/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/lib/libgtestd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 gtest"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/lib/libgtestd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/lib/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 gtest_main"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/lib/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/googletest-build/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_chain_writer">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/test_chain_writer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/Makefile&quot;  VERBOSE=1 test_chain_writer"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_chain_writer/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/test_chain_writer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/Makefile&quot;  VERBOSE=1 test_chain_writer/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_db">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/db/test_db" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/db"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/db/Makefile&quot;  VERBOSE=1 test_db"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/db/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/db/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/db/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_db/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/db/test_db" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/db"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/db/Makefile&quot;  VERBOSE=1 test_db/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/db/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/db/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/db/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_crypto">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/test_crypto" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/crypto"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/Makefile&quot;  VERBOSE=1 test_crypto"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_crypto/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/test_crypto" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/crypto"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/Makefile&quot;  VERBOSE=1 test_crypto/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_primitives">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/test_primitives" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/primitives"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/Makefile&quot;  VERBOSE=1 test_primitives"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_primitives/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/test_primitives" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/primitives"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/Makefile&quot;  VERBOSE=1 test_primitives/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_block_info_database">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/test_block_info_database" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/Makefile&quot;  VERBOSE=1 test_block_info_database"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_block_info_database/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/test_block_info_database" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/Makefile&quot;  VERBOSE=1 test_block_info_database/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_coin_database">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/test_coin_database" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/Makefile&quot;  VERBOSE=1 test_coin_database"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_coin_database/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/test_coin_database" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/Makefile&quot;  VERBOSE=1 test_coin_database/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_chain">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/chain/test_chain" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/chain"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain/Makefile&quot;  VERBOSE=1 test_chain"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_chain/fast">
+				<Option output="/home/robert/classes/csci1951l/rathDB_stencil/test/chain/test_chain" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/robert/classes/csci1951l/rathDB_stencil/test/chain"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/include"/>
+					<Add directory="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain/Makefile&quot;  VERBOSE=1 test_chain/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/robert/classes/csci1951l/rathDB_stencil/test/chain/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database/block_info_database.h">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/block_info_database/block_record.h">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain/chain.h">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer/chain_writer.h">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer/file_info.h">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/chain_writer/undo_block.h">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database/coin.h">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database/coin_database.h">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database/coin_record.h">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/coin_database/undo_coin_record.h">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/crypto/rathcrypto.h">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/db/db.h">
+			<Option target="db"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives/block.h">
+			<Option target="primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives/block_header.h">
+			<Option target="primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives/transaction.h">
+			<Option target="primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives/transaction_input.h">
+			<Option target="primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/primitives/transaction_output.h">
+			<Option target="primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/include/proto/rath.pb.h">
+			<Option target="proto"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/block_info_database/block_info_database.cpp">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/block_info_database/block_record.cpp">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/chain/chain.cpp">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/chain_writer/chain_writer.cpp">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/chain_writer/file_info.cpp">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/chain_writer/undo_block.cpp">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/coin_database/coin.cpp">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/coin_database/coin_database.cpp">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/coin_database/coin_record.cpp">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/coin_database/undo_coin_record.cpp">
+			<Option target="rathDB"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/crypto/rathcrypto.cpp">
+			<Option target="crypto"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/db/db.cpp">
+			<Option target="db"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/primitives/block.cpp">
+			<Option target="primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/primitives/block_header.cpp">
+			<Option target="primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/primitives/transaction.cpp">
+			<Option target="primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/primitives/transaction_input.cpp">
+			<Option target="primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/primitives/transaction_output.cpp">
+			<Option target="primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/src/proto/rath.pb.cc">
+			<Option target="proto"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock/src/gmock-all.cc">
+			<Option target="gmock"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock/src/gmock_main.cc">
+			<Option target="gmock_main"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/src/gtest-all.cc">
+			<Option target="gtest"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/src/gtest_main.cc">
+			<Option target="gtest_main"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/block_info_db_tests.cpp">
+			<Option target="test_block_info_database"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/main.cpp">
+			<Option target="test_block_info_database"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/chain/main.cpp">
+			<Option target="test_chain"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/chain_writer_tests.cpp">
+			<Option target="test_chain_writer"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/main.cpp">
+			<Option target="test_chain_writer"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/coin_database_tests.cpp">
+			<Option target="test_coin_database"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/main.cpp">
+			<Option target="test_coin_database"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/crypto_tests.cpp">
+			<Option target="test_crypto"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/main.cpp">
+			<Option target="test_crypto"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/db/db_tests.cpp">
+			<Option target="test_db"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/db/main.cpp">
+			<Option target="test_db"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/main.cpp">
+			<Option target="test_primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/primitives_tests.cpp">
+			<Option target="test_primitives"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\googletest-src\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\googletest-src\googlemock\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock/cmake/gmock.pc.in">
+			<Option virtualFolder="CMake Files\googletest-src\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googlemock/cmake/gmock_main.pc.in">
+			<Option virtualFolder="CMake Files\googletest-src\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\googletest-src\googletest\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/cmake/Config.cmake.in">
+			<Option virtualFolder="CMake Files\googletest-src\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/cmake/gtest.pc.in">
+			<Option virtualFolder="CMake Files\googletest-src\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/cmake/gtest_main.pc.in">
+			<Option virtualFolder="CMake Files\googletest-src\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/googletest-src/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\googletest-src\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\core\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/CMakeLists.txt.in">
+			<Option virtualFolder="CMake Files\test\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\chain_writer\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/chain_writer_tests.cpp">
+			<Option virtualFolder="CMake Files\test\chain_writer\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/chain_writer/main.cpp">
+			<Option virtualFolder="CMake Files\test\chain_writer\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/db/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\db\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/db/db_tests.cpp">
+			<Option virtualFolder="CMake Files\test\db\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/db/main.cpp">
+			<Option virtualFolder="CMake Files\test\db\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\crypto\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/crypto_tests.cpp">
+			<Option virtualFolder="CMake Files\test\crypto\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/crypto/main.cpp">
+			<Option virtualFolder="CMake Files\test\crypto\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\primitives\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/main.cpp">
+			<Option virtualFolder="CMake Files\test\primitives\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/primitives_tests.cpp">
+			<Option virtualFolder="CMake Files\test\primitives\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\block_info_database\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/block_info_db_tests.cpp">
+			<Option virtualFolder="CMake Files\test\block_info_database\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/block_info_database/main.cpp">
+			<Option virtualFolder="CMake Files\test\block_info_database\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\coin_database\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/coin_database_tests.cpp">
+			<Option virtualFolder="CMake Files\test\coin_database\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/coin_database/main.cpp">
+			<Option virtualFolder="CMake Files\test\coin_database\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/chain/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\chain\"/>
+		</Unit>
+		<Unit filename="/home/robert/classes/csci1951l/rathDB_stencil/test/chain/main.cpp">
+			<Option virtualFolder="CMake Files\test\chain\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

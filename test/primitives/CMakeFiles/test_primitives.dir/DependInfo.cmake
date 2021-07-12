@@ -1,15 +1,20 @@
-
-# Consider dependencies only in project.
-set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
-
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
   )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/main.cpp" "/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/CMakeFiles/test_primitives.dir/main.cpp.o"
+  "/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/primitives_tests.cpp" "/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/CMakeFiles/test_primitives.dir/primitives_tests.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
-# The set of dependency files which are needed:
-set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/main.cpp" "test/primitives/CMakeFiles/test_primitives.dir/main.cpp.o" "gcc" "test/primitives/CMakeFiles/test_primitives.dir/main.cpp.o.d"
-  "/home/robert/classes/csci1951l/rathDB_stencil/test/primitives/primitives_tests.cpp" "test/primitives/CMakeFiles/test_primitives.dir/primitives_tests.cpp.o" "gcc" "test/primitives/CMakeFiles/test_primitives.dir/primitives_tests.cpp.o.d"
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "core/include/primitives"
+  "core/include/proto"
+  "googletest-src/googletest/include"
+  "googletest-src/googletest"
   )
 
 # Targets to which this target links.

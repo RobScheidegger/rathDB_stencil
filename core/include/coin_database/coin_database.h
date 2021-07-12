@@ -37,7 +37,7 @@ private:
     /// db (hashmap storage) of block hash to block record.
     std::unique_ptr<Database> _database;
 
-    /// Main cache variables
+    /// Main cache variables (the main cache maps a serialized CoinLocator to a Coin)
     std::unordered_map<std::string, std::unique_ptr<Coin>> _main_cache;
     /// maximum amount of entries in the cache
     const uint16_t _main_cache_capacity;
@@ -66,12 +66,14 @@ public:
     void store_transaction_in_mempool(std::unique_ptr<Transaction> transaction);
 
     void undo_coins(std::vector<std::unique_ptr<UndoBlock>> undo_blocks);
-    std::vector<std::pair<uint32_t, uint8_t>> get_all_utxo(uint32_t public_key);
+
     void flush_main_cache();
+    //NO LONGER REQUIRED
+    std::vector<std::pair<uint32_t, uint8_t>> get_all_utxo(uint32_t public_key);
 
     //Helper Functions
-    std::vector<std::unique_ptr<TransactionInput>> find_inputs_in_main_cache(std::vector<std::unique_ptr<TransactionInput>> inputs);
-
+    std::vector<std::unique_ptr<TransactionInput>> find_inputs_in_main_cache(const std::vector<std::unique_ptr<TransactionInput>>& inputs);
+    std::vector<std::unique_ptr<TransactionInput>> find_inputs_in_database(const std::vector<std::unique_ptr<TransactionInput>>& inputs);
 };
 
 #endif //RATHDB_STENCIL_COIN_DATABASE_H
