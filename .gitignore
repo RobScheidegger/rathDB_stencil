@@ -9,8 +9,7 @@ CMakeFiles/*
 
 **/*.make
 **/*.cmake
-**/*.a
-**/*.o
+*.o
 
 CMakeLists.txt.user
 CMakeCache.txt
@@ -23,3 +22,11 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+googletest-build
+**/*/link.txt
+test/googletest-download
+*.a
+googletest-src
+test_primatives
+test_crypto

@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/test_coin_database.dir/coin_database_tests.cpp.o CMakeFiles/test_coin_database.dir/main.cpp.o -o test_coin_database  -Wl,-rpath,/usr/local/lib ../../core/librathDB.a ../../lib/libgtestd.a ../../core/libdb.a ../../core/libprimitives.a ../../core/libproto.a /usr/local/lib/libprotobuf.so ../../core/libcrypto.a -lpthread 

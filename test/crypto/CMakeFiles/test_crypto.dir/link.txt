@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/test_crypto.dir/crypto_tests.cpp.o CMakeFiles/test_crypto.dir/main.cpp.o -o test_crypto  ../../core/libcrypto.a ../../lib/libgtestd.a -lpthread 
