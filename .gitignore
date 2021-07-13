@@ -30,3 +30,4 @@ test/googletest-download
 googletest-src
 test_primatives
 test_crypto
+test_*
