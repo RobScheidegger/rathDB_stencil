@@ -104,7 +104,7 @@ bool CoinDatabase::validate_and_store_block(std::vector<std::unique_ptr<Transact
     bool valid_block = this->validate_block(transactions);
     if(valid_block)
     {
-        //this->store_block(transactions);
+        this->store_block(std::move(transactions));
     }
     return false;
 }
@@ -120,5 +120,36 @@ bool CoinDatabase::validate_and_store_transaction(std::unique_ptr<Transaction> t
 
 void CoinDatabase::store_transaction(std::unique_ptr<Transaction> transaction)
 {
+    store_transaction_in_mempool(std::move(transaction));
+}
 
+void CoinDatabase::store_block(std::vector<std::unique_ptr<Transaction>> transactions) {
+    remove_transactions_from_mempool(transactions);
+
+    store_transactions_to_main_cache(std::move(transactions));
+}
+
+void CoinDatabase::store_transactions_to_main_cache(std::vector<std::unique_ptr<Transaction>> transactions) {
+
+}
+
+void CoinDatabase::store_transaction_in_mempool(std::unique_ptr<Transaction> transaction) {
+    if(_mempool_size < _mempool_capacity){
+        auto hash = RathCrypto::hash(Transaction::serialize(*transaction));
+        _mempool_cache[hash] = transaction;
+    }
+}
+
+void CoinDatabase::flush_main_cache() {
+    for(auto& entry : _main_cache){
+        if(entry.second->is_spent){
+            // Need to remove record from the database
+            // TODO: What is the key to database??
+            // Should be transaction hash
+            std::string key = std::to_string(entry.second->transaction_output->public_key);
+            _database->delete_safely(key);
+        }
+    }
+    _main_cache.clear();
+    _main_cache_size = 0;
 }

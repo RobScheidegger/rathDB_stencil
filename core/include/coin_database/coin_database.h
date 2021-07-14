@@ -72,7 +72,7 @@ public:
     std::vector<std::pair<uint32_t, uint8_t>> get_all_utxo(uint32_t public_key);
 
     //Helper Functions
-    std::vector<std::unique_ptr<TransactionInput>> find_inputs_in_main_cache(const std::vector<std::unique_ptr<TransactionInput>>& inputs);
+    std::vector<std::unique_ptr<TransactionInput>> find_hash, inputs_in_main_cache(const std::vector<std::unique_ptr<TransactionInput>>& inputs);
     std::vector<std::unique_ptr<TransactionInput>> find_inputs_in_database(const std::vector<std::unique_ptr<TransactionInput>>& inputs);
 };
 
