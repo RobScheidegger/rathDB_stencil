@@ -1,4 +1,5 @@
 #include <chain_writer.h>
+#include <filesystem>
 
 const std::string ChainWriter::_file_extension = "data";
 const std::string ChainWriter::_block_filename = "blocks";
@@ -13,8 +14,8 @@ ChainWriter::ChainWriter() : _current_block_file_number(0),
                             _current_undo_offset(0) {}
 
 std::unique_ptr<BlockRecord> ChainWriter::store_block(const Block &block, const UndoBlock &undo_block, uint32_t height) {
-    const FileInfo& block_info = *write_block(Block::serialize(block));
-    const FileInfo& undo_block_info = *write_block(UndoBlock::serialize(undo_block));
+    std::unique_ptr<FileInfo> block_info = write_block(Block::serialize(block));
+    std::unique_ptr<FileInfo> undo_block_info = write_undo_block(UndoBlock::serialize(undo_block));
 
     auto block_header_copy = std::make_unique<BlockHeader>(
             block.block_header->version,
@@ -24,11 +25,14 @@ std::unique_ptr<BlockRecord> ChainWriter::store_block(const Block &block, const 
             block.block_header->nonce,
             block.block_header->timestamp
             );
-    return std::make_unique<BlockRecord>(std::move(block_header_copy),
-                                          block.transactions.size(),
-                                          0,
-                                          block_info,
-                                          undo_block_info);
+    auto num_transactions = block.transactions.size();
+    auto record = new BlockRecord(std::move(block_header_copy),
+                                                num_transactions,
+                                                height,
+                                                *block_info.get(),
+                                                *undo_block_info.get());
+    std::unique_ptr<BlockRecord> unique_record(record);
+    return std::move(unique_record);
 
 }
 
@@ -42,18 +46,28 @@ std::unique_ptr<FileInfo> ChainWriter::write_block(std::string serialized_block)
         _current_block_file_number++;
         _current_block_offset = 0;
     }
-
-    std::string file_to_write = get_data_directory() + "/" +
+    const std::string file_to_write = get_data_directory() + "/" +
             get_block_filename() + "_" +
             std::to_string(_current_block_file_number) + "." +
             get_file_extension();
 
-    auto file = fopen(file_to_write.c_str(), "ab");
+    const auto& write_file = file_to_write.c_str();
+    auto file = fopen(write_file, "at");
+    if(!std::filesystem::is_directory(get_data_directory()))
+    {
+        std::filesystem::create_directory(get_data_directory());
+    }
+    if(!file){
+        file = fopen(write_file, "wt");
+    }
     fwrite(serialized_block.c_str(), sizeof(char), block_length, file);
     fclose(file);
 
     _current_block_offset += block_length;
-    return std::make_unique<FileInfo>(file_to_write, _current_block_offset - block_length , _current_block_offset);
+    auto fileInfo = new FileInfo(file_to_write, _current_block_offset - block_length , _current_block_offset);
+
+    auto ptr = std::unique_ptr<FileInfo>(fileInfo);
+    return ptr;
 }
 
 std::unique_ptr<FileInfo> ChainWriter::write_undo_block(std::string serialized_block) {
@@ -67,11 +81,11 @@ std::unique_ptr<FileInfo> ChainWriter::write_undo_block(std::string serialized_b
     }
 
     std::string file_to_write = get_data_directory() + "/" +
-                                get_block_filename() + "_" +
+                                get_undo_filename() + "_" +
                                 std::to_string(_current_undo_file_number) + "." +
                                 get_file_extension();
 
-    auto file = fopen(file_to_write.c_str(), "ab");
+    auto file = fopen(file_to_write.c_str(), "ab+");
     fwrite(serialized_block.c_str(), sizeof(char), block_length, file);
     fclose(file);
 

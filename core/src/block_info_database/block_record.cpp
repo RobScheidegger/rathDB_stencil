@@ -17,10 +17,10 @@ BlockRecord::BlockRecord(
         const FileInfo& undo_info_) :
         block_header(std::move(block_header_)), height(height_),
         num_transactions(num_transactions_),
-        block_file_stored(block_info_.file_name),
+        block_file_stored(std::move(block_info_.file_name)),
         block_offset_start(block_info_.start),
         block_offset_end(block_info_.end),
-        undo_file_stored(undo_info_.file_name),
+        undo_file_stored(std::move(undo_info_.file_name)),
         undo_offset_start(undo_info_.start),
         undo_offset_end(undo_info_.end) {}
 

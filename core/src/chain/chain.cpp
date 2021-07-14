@@ -7,9 +7,10 @@ Chain::Chain() : _active_chain_length(1),
     _coin_database(std::make_unique<CoinDatabase>()),
     _chain_writer(std::make_unique<ChainWriter>()) {
 
-    const UndoBlock undo_genesis_block = make_undo_block(*_active_chain_last_block);
+    auto undo_genesis_block = make_undo_block(*_active_chain_last_block);
 
-    const auto block_record = _chain_writer->store_block(*_active_chain_last_block, undo_genesis_block, 0);
+    const auto block_record = _chain_writer->store_block(*_active_chain_last_block, *undo_genesis_block, 0);
+
 
     _block_info_database->store_block_record(RathCrypto::hash(BlockRecord::serialize(*block_record)),*block_record);
 
@@ -18,8 +19,29 @@ Chain::Chain() : _active_chain_length(1),
 
 
 
-UndoBlock Chain::make_undo_block(const Block& original_block){
+std::unique_ptr<UndoBlock> Chain::make_undo_block(const Block& original_block){
+    std::vector<uint32_t> transaction_hashes;
+    std::vector<std::unique_ptr<UndoCoinRecord>> undo_coin_records;
 
+    for(auto& transaction : original_block.transactions) {
+
+        auto version = transaction->version;
+        auto hash = RathCrypto::hash(Transaction::serialize(*transaction));
+        transaction_hashes.push_back(hash);
+        std::vector<uint32_t> utxo;
+        std::vector<uint32_t> amounts;
+        std::vector<uint32_t> public_keys;
+        for(auto& input : transaction->transaction_inputs){
+            // For each input, find the corresponding UTXO that it consumed and add to utxo, amts, public_keys
+            auto txo = _coin_database->get_utxo(input->reference_transaction_hash, input->utxo_index);
+            utxo.push_back(input->utxo_index);
+            amounts.push_back(txo->amount);
+            public_keys.push_back(txo->public_key);
+        }
+        auto undo_record = std::make_unique<UndoCoinRecord>(version,utxo,amounts,public_keys);
+        undo_coin_records.push_back(std::move(undo_record));
+    }
+    return std::make_unique<UndoBlock>(std::move(transaction_hashes), std::move(undo_coin_records));
 }
 
 void Chain::handle_block(std::unique_ptr<Block> block) {
@@ -46,7 +68,7 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
         // Create the necessary undoBlock
         auto undoBlock = make_undo_block(*block);
 
-        _chain_writer->store_block(*block, undoBlock, height);
+        _chain_writer->store_block(*block, *undoBlock, height);
 
         if(appended_to_active_chain)
         {

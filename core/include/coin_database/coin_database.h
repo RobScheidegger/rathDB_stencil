@@ -34,7 +34,7 @@ public:
 class CoinDatabase {
 private:
 
-    /// db (hashmap storage) of block hash to block record.
+    /// db (hashmap storage) of transaction hash to serialized CoinRecords
     std::unique_ptr<Database> _database;
 
     /// Main cache variables (the main cache maps a serialized CoinLocator to a Coin)
@@ -69,11 +69,8 @@ public:
 
     void flush_main_cache();
     //NO LONGER REQUIRED
-    std::vector<std::pair<uint32_t, uint8_t>> get_all_utxo(uint32_t public_key);
+    std::unique_ptr<TransactionOutput> get_utxo(uint32_t transaction_hash, uint32_t output_index);
 
-    //Helper Functions
-    std::vector<std::unique_ptr<TransactionInput>> find_hash, inputs_in_main_cache(const std::vector<std::unique_ptr<TransactionInput>>& inputs);
-    std::vector<std::unique_ptr<TransactionInput>> find_inputs_in_database(const std::vector<std::unique_ptr<TransactionInput>>& inputs);
 };
 
 #endif //RATHDB_STENCIL_COIN_DATABASE_H

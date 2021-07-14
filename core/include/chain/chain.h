@@ -104,7 +104,7 @@ public:
     Chain &operator=(const Chain &other) = delete;
 
     // Helper functions
-    static UndoBlock make_undo_block(const Block& original_block);
+    std::unique_ptr<UndoBlock> make_undo_block(const Block& original_block);
 };
 
 #endif //RATHDB_STENCIL_CHAIN_H

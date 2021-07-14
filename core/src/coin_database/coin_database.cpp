@@ -51,44 +51,32 @@ bool CoinDatabase::validate_block(const std::vector<std::unique_ptr<Transaction>
 // as well. These should probably be helper methods.
 bool CoinDatabase::validate_transaction(const Transaction& transaction)
 {
-    auto&& inputs = transaction.transaction_inputs;
-
-    auto&& remaining_inputs = find_inputs_in_main_cache(inputs);
-
-    auto&& not_in_either = find_inputs_in_database(remaining_inputs);
-
-    return not_in_either.size() == 0;
-}
-
-// Returns all of the transaction inputs not in the main cache
-std::vector<std::unique_ptr<TransactionInput>> CoinDatabase::find_inputs_in_main_cache(const std::vector<std::unique_ptr<TransactionInput>>& inputs)
-{
-
-    std::vector<std::unique_ptr<TransactionInput>> not_found_inputs;
-    for (auto& input: inputs)
+    std::vector<TransactionInput> inputs_not_in_cache;
+    for (auto& input: transaction.transaction_inputs)
     {
         CoinLocator* coin_locator = new CoinLocator(input->reference_transaction_hash, input->utxo_index);
         if (!this->_main_cache.contains(CoinLocator::serialize(*coin_locator)))
         {
-            //not_found_inputs.push_back(std::move(input));
+            inputs_not_in_cache.push_back(*input);
         }
     }
-    return not_found_inputs;
-}
+    for (auto& input : inputs_not_in_cache) {
+        std::string hash = std::to_string(input.reference_transaction_hash);
+        const auto &coin_record_serialized = this->_database->get_safely(hash);
+        auto coin_record = CoinRecord::deserialize(coin_record_serialized);
+        bool found = false;
 
-// Returns all of the transaction inputs not in the database
-std::vector<std::unique_ptr<TransactionInput>> CoinDatabase::find_inputs_in_database(const std::vector<std::unique_ptr<TransactionInput>>& inputs)
-{
-    //Assemble a vector of all the transaction keys
-    std::vector<std::string> keys;
-    for (auto& input : inputs)
-    {
-        keys.push_back(std::to_string(input->reference_transaction_hash));
+        for (auto &utxo : coin_record->utxo) {
+            if (utxo == input.utxo_index) {
+                found = true;
+                break;
+            }
+        }
+        if(!found) {
+            return false;
+        }
     }
-    const auto& blocks = this->_database->batch_read_safely(keys);
-    for(auto& block : blocks){
-
-    }
+    return true;
 }
 
 void CoinDatabase::remove_transactions_from_mempool(const std::vector<std::unique_ptr<Transaction>>& transactions)
@@ -136,7 +124,7 @@ void CoinDatabase::store_transactions_to_main_cache(std::vector<std::unique_ptr<
 void CoinDatabase::store_transaction_in_mempool(std::unique_ptr<Transaction> transaction) {
     if(_mempool_size < _mempool_capacity){
         auto hash = RathCrypto::hash(Transaction::serialize(*transaction));
-        _mempool_cache[hash] = transaction;
+        _mempool_cache[hash] = std::move(transaction);
     }
 }
 
@@ -146,10 +134,34 @@ void CoinDatabase::flush_main_cache() {
             // Need to remove record from the database
             // TODO: What is the key to database??
             // Should be transaction hash
-            std::string key = std::to_string(entry.second->transaction_output->public_key);
+            auto coin_locator = CoinLocator::deserialize(entry.first);
+            std::string key = std::to_string(coin_locator->transaction_hash);
             _database->delete_safely(key);
         }
     }
     _main_cache.clear();
     _main_cache_size = 0;
+}
+
+std::unique_ptr<TransactionOutput> CoinDatabase::get_utxo(uint32_t transaction_hash, uint32_t output_index) {
+    // First try the main cache
+    auto locator = new CoinLocator(transaction_hash, output_index);
+    auto serialized_locator = CoinLocator::serialize(*locator);
+    if(_main_cache.contains(serialized_locator)){
+        std::unique_ptr<Coin>& result = _main_cache[serialized_locator];
+        return std::move(result->transaction_output);
+    }
+    else {
+        //Search database
+        auto string_hash = std::to_string(transaction_hash);
+        auto db_result = _database->get_safely(string_hash);
+        auto coin_record = CoinRecord::deserialize(db_result);
+        auto it = std::find(coin_record->utxo.begin(),
+                    coin_record->utxo.end(),
+                    output_index);
+        int index = it - coin_record->utxo.begin(); //The current index in the vector
+        auto txo = std::make_unique<TransactionOutput>(coin_record->amounts[index],
+                                                       coin_record->public_keys[index]);
+        return txo;
+    }
 }

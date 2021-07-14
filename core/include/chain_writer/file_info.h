@@ -18,7 +18,7 @@
 class FileInfo {
 public:
     /// name of the file
-    std::string file_name;
+    const std::string file_name;
     /// starting offset of data
     const uint16_t start;
     /// ending offset of data
