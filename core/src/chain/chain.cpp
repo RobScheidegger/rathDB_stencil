@@ -46,6 +46,9 @@ std::unique_ptr<UndoBlock> Chain::make_undo_block(const Block& original_block){
 }
 
 void Chain::handle_block(std::unique_ptr<Block> block) {
+
+    auto this_block_hash = RathCrypto::hash(Block::serialize(*block));
+    std::cout << "[Chain::handle_block] Handling Block:" << this_block_hash << std::endl;
     // If block is going to active chain
     bool validated = this->_coin_database->validate_block(block->get_transactions());
     bool appended_to_active_chain = block->block_header->previous_block_hash == this->get_last_block_hash();
@@ -57,19 +60,23 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
 
     if (validated)
     {
+        std::cout << "[Chain::handle_block] Block: " << this_block_hash << " valid" << std::endl;
         // Find the height of the block
         int height;
         if(appended_to_active_chain)
         {
+            std::cout << "[Chain::handle_block] Block: " << this_block_hash << " going to main chain" << std::endl;
             height = this->get_active_chain_length() + 1;
         }
         else {
+            std::cout << "[Chain::handle_block] Block: " << this_block_hash << " not going to main chain" << std::endl;
             std::unique_ptr<BlockRecord> record = _block_info_database->get_block_record(block->block_header->previous_block_hash);
             height = record->height + 1;
         }
         // Create the necessary undoBlock
         auto undoBlock = make_undo_block(*block);
 
+        std::cout << "[Chain::handle_block] Storing Block: " << this_block_hash << " to disk" << std::endl;
         _chain_writer->store_block(*block, *undoBlock, height);
 
         if(appended_to_active_chain)
@@ -80,24 +87,32 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
         if(height > _active_chain_length)
         {
             // A fork has taken over the main chain, so have to undo that
-            auto this_block_hash = RathCrypto::hash(Block::serialize(*block));
+            std::cout << "[Chain::handle_block] Block: " << this_block_hash << " created override fork" << std::endl;
             auto forked_blocks = get_forked_blocks_stack(this_block_hash);
             auto undo_blocks = this->get_undo_blocks_queue(forked_blocks.size());
 
             _coin_database->undo_coins(std::move(undo_blocks));
 
             for(auto& forked_block : forked_blocks){
+                auto forked_hash = RathCrypto::hash(Block::serialize(*forked_block));
+                std::cout << "[Chain::handle_block] Storing Block " << forked_hash << " to CoinDatabase" << std::endl;
                 _coin_database->store_block(forked_block->get_transactions());
             }
         }
     }
+    else{
+        std::cout << "[Chain::handle_block] Block: " << this_block_hash << " invalid." << std::endl;
+    }
 }
 
 void Chain::handle_transaction(std::unique_ptr<Transaction> transaction){
+    auto transaction_hash = RathCrypto::hash(Transaction::serialize(*transaction));
+    std::cout << "[Chain::handle_transaction] Handling transaction: " << transaction_hash << std::endl;
     _coin_database->validate_and_store_transaction(std::move(transaction));
 }
 
 uint32_t Chain::get_chain_length(uint32_t block_hash){
+    std::cout << "[Chain::get_chain_length] Getting Chain length for block " << block_hash << std::endl;
     auto block_record = _block_info_database->get_block_record(block_hash);
     if(block_record == NULL){
         return 0;
@@ -107,6 +122,7 @@ uint32_t Chain::get_chain_length(uint32_t block_hash){
 
 std::unique_ptr<Block> Chain::get_block(uint32_t block_hash){
     // First, find the block record
+    std::cout << "[Chain::get_block] Getting Block For:" << block_hash << std::endl;
     auto block_record = _block_info_database->get_block_record(block_hash);
     if (block_record == NULL){
         return nullptr;
@@ -208,9 +224,9 @@ uint32_t Chain::get_active_chain_length() const{
 }
 
 std::vector<std::shared_ptr<Block>> Chain::get_forked_blocks_stack(uint32_t starting_hash){
+    std::cout << "[Chain::get_forked_blocks_stack] Getting stack from " << starting_hash << std::endl;
     std::vector<std::shared_ptr<Block>> return_blocks;
 
-    // TODO
     auto main_chain_hashes = get_active_chain_hashes(_active_chain_length - 7, _active_chain_length);
     std::set<uint32_t> hashes_set;
     for(uint32_t hash : main_chain_hashes){
@@ -228,6 +244,7 @@ std::vector<std::shared_ptr<Block>> Chain::get_forked_blocks_stack(uint32_t star
 }
 
 std::vector<std::unique_ptr<UndoBlock>> Chain::get_undo_blocks_queue(uint32_t branching_height){
+    std::cout << "[Chain::get_undo_blocks_queue] Getting undo blocks for height: " << branching_height << std::endl;
     std::vector<std::unique_ptr<UndoBlock>> return_blocks;
     auto next_hash = get_last_block_hash();
     for(int i = get_active_chain_length(); i >= branching_height; i--){
