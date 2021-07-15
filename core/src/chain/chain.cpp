@@ -77,7 +77,10 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
         auto undoBlock = make_undo_block(*block);
 
         std::cout << "[Chain::handle_block] Storing Block: " << this_block_hash << " to disk" << std::endl;
-        _chain_writer->store_block(*block, *undoBlock, height);
+        auto block_record =_chain_writer->store_block(*block, *undoBlock, height);
+        std::cout << "[Chain::handle_block] Storing Block Record for " << this_block_hash << " to BlockInfoDatabase" << std::endl;
+        //Also add it to the block info database
+        _block_info_database->store_block_record(this_block_hash, *block_record);
 
         if(appended_to_active_chain)
         {
@@ -134,6 +137,7 @@ std::unique_ptr<Block> Chain::get_block(uint32_t block_hash){
 }
 
 std::vector<std::unique_ptr<Block>> Chain::get_active_chain(uint32_t start, uint32_t end) {
+    std::cout << "[Chain::get_active_chain] Getting active chain from " << start << " to " << end << std::endl;
     std::vector<std::unique_ptr<Block>> return_vector;
     if(end < start)
         return return_vector;
@@ -159,6 +163,7 @@ std::vector<std::unique_ptr<Block>> Chain::get_active_chain(uint32_t start, uint
 }
 
 std::vector<uint32_t> Chain::get_active_chain_hashes(uint32_t start, uint32_t end){
+    std::cout << "[Chain::get_active_chain_hashes] Getting active hashes from " << start << " to " << end << std::endl;
     std::vector<uint32_t> return_vector;
     if(end < start)
         return return_vector;
