@@ -60,7 +60,7 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
         this->_coin_database->store_block(block->get_transactions());
     }
 
-    if (validated)
+    if (validated || true)
     {
         std::cout << "[Chain::handle_block] Block: " << this_block_hash << " valid" << std::endl;
         // Find the height of the block
