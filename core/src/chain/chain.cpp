@@ -289,7 +289,7 @@ uint32_t Chain::get_active_chain_length() const{
 std::vector<std::shared_ptr<Block>> Chain::get_forked_blocks_stack(uint32_t starting_hash){
     std::cout << "[Chain::get_forked_blocks_stack] Getting stack from " << starting_hash << std::endl;
     std::vector<std::shared_ptr<Block>> return_blocks;
-    auto min_index = _active_chain_length - 7 < 1 ? 1 : _active_chain_length - 7;
+    auto min_index = _active_chain_length < 8 ? 1 : _active_chain_length - 7;
     auto main_chain_hashes = get_active_chain_hashes(min_index, _active_chain_length);
     std::set<uint32_t> hashes_set;
     for(uint32_t hash : main_chain_hashes){
