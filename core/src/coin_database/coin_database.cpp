@@ -152,7 +152,6 @@ void CoinDatabase::flush_main_cache() {
     for(auto& entry : _main_cache){
         if(entry.second->is_spent){
             // Need to remove record from the database
-            // TODO: What is the key to database??
             // Should be transaction hash
             auto coin_locator = CoinLocator::deserialize(entry.first);
             std::string key = std::to_string(coin_locator->transaction_hash);
