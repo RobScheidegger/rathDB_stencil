@@ -9,6 +9,7 @@
 
 #include <coin_database.h>
 #include <rathcrypto.h>
+#include <iostream>
 
 CoinLocator::CoinLocator(
         uint32_t transaction_hash_, uint8_t output_index_)
