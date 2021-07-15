@@ -251,7 +251,10 @@ std::unique_ptr<TransactionOutput> CoinDatabase::get_utxo(uint32_t transaction_h
                     coin_record->utxo.end(),
                     output_index);
         int index = it - coin_record->utxo.begin(); //The current index in the vector
-        std::cout << "[CoinDatabase::get_utxo] Found record at index: " << index << std::endl;
+        std::cout << "[CoinDatabase::get_utxo] Found record at index: " << index
+            << " with utxo size " << coin_record->utxo.size() << std::endl;
+        if(index >= coin_record->utxo.size())
+            return nullptr;
         auto txo = std::make_unique<TransactionOutput>(coin_record->amounts[index],
                                                        coin_record->public_keys[index]);
         return txo;
