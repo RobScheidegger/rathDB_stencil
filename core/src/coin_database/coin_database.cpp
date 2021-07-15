@@ -126,17 +126,19 @@ void CoinDatabase::store_transactions_to_main_cache(std::vector<std::unique_ptr<
 
     for(auto& transaction : transactions){
         auto hash = RathCrypto::hash(Transaction::serialize(*transaction));
-        std::cout << "[CoinDatabase::store_transactions_to_main_cache] Storing to main cache: " <<  hash << std::endl;
+        int output_count = transaction->transaction_outputs.size();
+        std::cout << "[CoinDatabase::store_transactions_to_main_cache] Storing to main cache: " <<  hash <<
+        " with " << output_count << " outputs" <<std::endl;
         //Take all of the inputs and remove the spent UTXO
         // TODO
         for(auto& input : transaction->transaction_inputs){
 
         }
         // Add all of the outputs to the main cache
-        int output_count = transaction->transaction_outputs.size();
         for(int i = 0; i < output_count; i++){
             auto& txo = transaction->transaction_outputs[i];
             auto locator = new CoinLocator(hash, i);
+            std::cout << "[CoinDatabase::store_transaction_to_main_cache] Storing UTXO Tx: " << hash << " Idx: " << i << std::endl;
             auto record = std::make_unique<Coin>(std::move(txo), false);
             _main_cache[CoinLocator::serialize(*locator)] = std::move(record);
             _main_cache_size += 1;
