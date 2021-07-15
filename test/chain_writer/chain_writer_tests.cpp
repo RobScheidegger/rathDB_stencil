@@ -8,9 +8,6 @@
  */
 
 #include <gtest/gtest.h>
-
-
-
 #include <chain.h>
 #include <chain_writer.h>
 #include <rathcrypto.h>
@@ -98,5 +95,4 @@ TEST(ChainWriter, WritesReadsMultiple) {
     std::cerr << BlockHeader::serialize(*result_block->block_header);
     EXPECT_EQ(Block::serialize(*result_block), Block::serialize(*block));
     EXPECT_EQ(Block::serialize(*result_block_2), Block::serialize(*block_2));
-
 }

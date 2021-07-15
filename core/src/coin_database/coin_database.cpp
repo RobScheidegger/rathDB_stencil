@@ -130,9 +130,28 @@ void CoinDatabase::store_transactions_to_main_cache(std::vector<std::unique_ptr<
         std::cout << "[CoinDatabase::store_transactions_to_main_cache] Storing to main cache: " <<  hash <<
         " with " << output_count << " outputs" <<std::endl;
         //Take all of the inputs and remove the spent UTXO
-        // TODO
         for(auto& input : transaction->transaction_inputs){
-
+            //Check main cache, mark as spend if found
+            auto locator = new CoinLocator(input->reference_transaction_hash, input->utxo_index);
+            auto serialized_locator = CoinLocator::serialize(*locator);
+            if(_main_cache.contains(serialized_locator)){
+                _main_cache[serialized_locator]->is_spent = true;
+            }
+            else{
+                // Have to check the database
+                // Get the record for a given transaction
+                std::string transaction_hash = std::to_string(input->reference_transaction_hash);
+                auto db_result = _database->get_safely(transaction_hash);
+                auto coin_record = CoinRecord::deserialize(db_result);
+                auto it = std::find(coin_record->utxo.begin(),
+                                    coin_record->utxo.end(),
+                                    locator->output_index);
+                int index = it - coin_record->utxo.begin(); //The current index in the vector
+                coin_record->utxo.erase(coin_record->utxo.begin() + index);
+                coin_record->amounts.erase(coin_record->amounts.begin() + index);
+                coin_record->public_keys.erase(coin_record->public_keys.begin() + index);
+                _database->put_safely(transaction_hash, CoinRecord::serialize(*coin_record));
+            }
         }
         // Add all of the outputs to the main cache
         for(int i = 0; i < output_count; i++){
@@ -165,7 +184,16 @@ void CoinDatabase::flush_main_cache() {
             auto coin_record = CoinRecord::deserialize(_database->get_safely(transaction_hash));
             if(entry.second->is_spent){
                 // Needs to be removed
-
+                auto db_result = _database->get_safely(transaction_hash);
+                auto coin_record = CoinRecord::deserialize(db_result);
+                auto it = std::find(coin_record->utxo.begin(),
+                                    coin_record->utxo.end(),
+                                    coin_locator->output_index);
+                int index = it - coin_record->utxo.begin(); //The current index in the vector
+                coin_record->utxo.erase(coin_record->utxo.begin() + index);
+                coin_record->amounts.erase(coin_record->amounts.begin() + index);
+                coin_record->public_keys.erase(coin_record->public_keys.begin() + index);
+                _database->put_safely(transaction_hash, CoinRecord::serialize(*coin_record));
             }
             else{
                 // Needs to be added
@@ -233,8 +261,16 @@ void CoinDatabase::undo_coins(std::vector<std::unique_ptr<UndoBlock>> undo_block
                 }
                 else {
                     // Check the database
-                    auto coin_record_serialized = _database->get_safely(std::to_string(transaction_hash));
-                    auto coin_record = CoinRecord::deserialize(coin_record_serialized);
+                    auto db_result = _database->get_safely(std::to_string(transaction_hash));
+                    auto coin_record = CoinRecord::deserialize(db_result);
+                    auto it = std::find(coin_record->utxo.begin(),
+                                        coin_record->utxo.end(),
+                                        utxo_index);
+                    int index = it - coin_record->utxo.begin();
+                    coin_record->utxo.erase(coin_record->utxo.begin() + index);
+                    coin_record->amounts.erase(coin_record->amounts.begin() + index);
+                    coin_record->public_keys.erase(coin_record->public_keys.begin() + index);
+                    _database->put_safely(std::to_string(transaction_hash), CoinRecord::serialize(*coin_record));
 
                 }
             }

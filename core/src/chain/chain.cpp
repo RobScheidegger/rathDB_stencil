@@ -12,15 +12,10 @@ Chain::Chain() : _active_chain_length(1),
     std::cout << "[Chain::constructor] Storing genesis block with hash: " << genesis_block_hash << std::endl;
     const auto block_record = _chain_writer->store_block(*_active_chain_last_block, *undo_genesis_block, 1);
 
-
     _block_info_database->store_block_record(genesis_block_hash,*block_record);
-
     _coin_database->store_block(_active_chain_last_block->get_transactions());
-
     _active_chain_length = 1;
 }
-
-
 
 std::unique_ptr<UndoBlock> Chain::make_undo_block(const Block& original_block){
     auto hash = RathCrypto::hash(Block::serialize(original_block));
@@ -37,7 +32,7 @@ std::unique_ptr<UndoBlock> Chain::make_undo_block(const Block& original_block){
         std::vector<uint32_t> public_keys;
         for(auto& input : transaction->transaction_inputs){
             std::cout << "[Chain::make_undo_block] Looking for UTXO from TX: " << input->reference_transaction_hash
-                << " at pos " << input->utxo_index << " from CoinDatabase" << std::endl;
+                << " at pos " << std::to_string(input->utxo_index) << " from CoinDatabase" << std::endl;
             // For each input, find the corresponding UTXO that it consumed and add to utxo, amts, public_keys
             auto txo = _coin_database->get_utxo(input->reference_transaction_hash, input->utxo_index);
             utxo.push_back(input->utxo_index);
