@@ -245,12 +245,13 @@ std::unique_ptr<TransactionOutput> CoinDatabase::get_utxo(uint32_t transaction_h
             return nullptr;
         }
         auto db_result = _database->get_safely(string_hash);
-        std::cout << "[CoinDatabase::get_utxo] Found transaction in database: " << string_hash << std::endl;
+        std::cout << "[CoinDatabase::get_utxo] Found transaction in database: " << string_hash << db_result << std::endl;
         auto coin_record = CoinRecord::deserialize(db_result);
         auto it = std::find(coin_record->utxo.begin(),
                     coin_record->utxo.end(),
                     output_index);
         int index = it - coin_record->utxo.begin(); //The current index in the vector
+        std::cout << "[CoinDatabase::get_utxo] Found record at index: " << index << std::endl;
         auto txo = std::make_unique<TransactionOutput>(coin_record->amounts[index],
                                                        coin_record->public_keys[index]);
         return txo;
