@@ -128,6 +128,7 @@ std::unique_ptr<Block> Chain::get_block(uint32_t block_hash){
     std::cout << "[Chain::get_block] Getting Block For:" << block_hash << std::endl;
     auto block_record = _block_info_database->get_block_record(block_hash);
     if (block_record == NULL){
+        std::cout << "[Chain::get_block] No record found for:" << block_hash << std::endl;
         return nullptr;
     }
     auto file_info = new FileInfo(block_record->block_file_stored, block_record->block_offset_start, block_record->block_offset_end);
@@ -147,7 +148,7 @@ std::vector<std::unique_ptr<Block>> Chain::get_active_chain(uint32_t start, uint
     {
         auto height = last_block_record->height;
         std::unique_ptr<BlockRecord> previous_block_record = std::move(last_block_record);
-        for(int i = height; i > start && i >= 0; i--){
+        for(int i = height; i >= start && i >= 0; i--){
             auto file_info = new FileInfo(previous_block_record->block_file_stored,
                                            previous_block_record->block_offset_start,
                                            previous_block_record->block_offset_end);

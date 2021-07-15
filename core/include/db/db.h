@@ -52,6 +52,7 @@ public:
     std::vector<std::string> batch_read_safely(std::vector<std::string> keys);
     void put_safely(std::string key, std::string value);
     void delete_safely(std::string key);
+    bool contains(std::string key);
 };
 
 #endif //RATH_DB_H

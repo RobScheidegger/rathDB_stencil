@@ -72,3 +72,7 @@ void Database::delete_safely(std::string key) {
     _store.erase(key);
 }
 
+bool Database::contains(std::string key) {
+    return _store.contains(key);
+}
+
