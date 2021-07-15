@@ -225,6 +225,8 @@ void CoinDatabase::undo_coins(std::vector<std::unique_ptr<UndoBlock>> undo_block
             for(int j = 0; j < undo_coin_record->public_keys.size(); j++){
                 auto utxo_index = undo_coin_record->utxo[j];
                 auto locator = new CoinLocator(transaction_hash, utxo_index);
+                std::cout << "[CoinDatabase::undo_coins] Removing UTXO at TX: " << transaction_hash
+                    << " and index " << utxo_index << std::endl;
                 auto key = CoinLocator::serialize(*locator);
                 if(_main_cache.contains(key)){
                     _main_cache[key]->is_spent = false;
