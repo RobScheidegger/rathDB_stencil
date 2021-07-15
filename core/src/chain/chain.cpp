@@ -301,7 +301,7 @@ std::vector<std::shared_ptr<Block>> Chain::get_forked_blocks_stack(uint32_t star
         auto fileInfo = new FileInfo(record->block_file_stored, record->block_offset_start, record->block_offset_end);
         auto block = Block::deserialize(_chain_writer->read_block(*fileInfo));
         return_blocks.push_back(std::move(block));
-        next_hash =
+        next_hash = record->block_header->previous_block_hash;
     }
     std::cout << "[Chain::get_forked_blocks_stack] Found common ancestor of : " << next_hash << std::endl;
 
