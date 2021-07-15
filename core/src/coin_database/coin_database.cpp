@@ -239,10 +239,13 @@ std::unique_ptr<TransactionOutput> CoinDatabase::get_utxo(uint32_t transaction_h
     else {
         //Search database
         auto string_hash = std::to_string(transaction_hash);
+        std::cout << "[CoinDatabase::get_utxo] Looking for transaction in database: " << string_hash << std::endl;
+
         if(!(_database->contains(string_hash))){
             return nullptr;
         }
         auto db_result = _database->get_safely(string_hash);
+        std::cout << "[CoinDatabase::get_utxo] Found transaction in database: " << string_hash << std::endl;
         auto coin_record = CoinRecord::deserialize(db_result);
         auto it = std::find(coin_record->utxo.begin(),
                     coin_record->utxo.end(),
