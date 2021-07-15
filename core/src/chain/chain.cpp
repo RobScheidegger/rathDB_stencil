@@ -274,7 +274,7 @@ std::vector<std::shared_ptr<Block>> Chain::get_forked_blocks_stack(uint32_t star
         next_hash = record->block_header->previous_block_hash;
     }
     std::cout << "[Chain::get_forked_blocks_stack] Found common ancestor of : " << next_hash << std::endl;
-
+    std::reverse(return_blocks.begin(), return_blocks.end());
     return return_blocks;
 }
 
