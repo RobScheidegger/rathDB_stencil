@@ -159,12 +159,34 @@ void CoinDatabase::store_transaction_in_mempool(std::unique_ptr<Transaction> tra
 void CoinDatabase::flush_main_cache() {
     std::cout << "[CoinDatabase::flush_main_cache] Flushing cache " << std::endl;
     for(auto& entry : _main_cache){
-        if(entry.second->is_spent){
-            // Need to remove record from the database
-            // Should be transaction hash
-            auto coin_locator = CoinLocator::deserialize(entry.first);
-            std::string key = std::to_string(coin_locator->transaction_hash);
-            _database->delete_safely(key);
+        auto coin_locator = CoinLocator::deserialize(entry.first);
+        std::string transaction_hash = std::to_string(coin_locator->transaction_hash);
+        if(_database->contains(transaction_hash)){
+            auto coin_record = CoinRecord::deserialize(_database->get_safely(transaction_hash));
+            if(entry.second->is_spent){
+                // Needs to be removed
+
+            }
+            else{
+                // Needs to be added
+                coin_record->utxo.push_back(coin_locator->output_index);
+                coin_record->amounts.push_back(entry.second->transaction_output->amount);
+                coin_record->public_keys.push_back(entry.second->transaction_output->public_key);
+                _database->put_safely(transaction_hash, CoinRecord::serialize(*coin_record));
+            }
+        }
+        else{
+            if(entry.second->is_spent){
+                // Nothing needs to be done, no utxo left
+            }
+            else{
+                // Needs to be added to the database
+                std::vector<uint32_t> utxo = { coin_locator->output_index };
+                std::vector<uint32_t> public_keys = { entry.second->transaction_output->public_key };
+                std::vector<uint32_t> amounts = { entry.second->transaction_output->amount };
+                auto record = new CoinRecord(0, utxo, amounts, public_keys);
+                _database->put_safely(transaction_hash, CoinRecord::serialize(*record));
+            }
         }
     }
     _main_cache.clear();
