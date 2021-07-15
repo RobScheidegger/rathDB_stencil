@@ -13,9 +13,7 @@ Chain::Chain() : _active_chain_length(1),
 
     _block_info_database->store_block_record(RathCrypto::hash(BlockRecord::serialize(*block_record)),*block_record);
 
-    auto duplicate_genesis_block = Block::deserialize(Block::serialize(*_active_chain_last_block));
-
-    _coin_database->store_block(std::move(duplicate_genesis_block->transactions));
+    _coin_database->store_block(_active_chain_last_block->get_transactions());
 
     _active_chain_length = 1;
 }
@@ -49,13 +47,12 @@ std::unique_ptr<UndoBlock> Chain::make_undo_block(const Block& original_block){
 
 void Chain::handle_block(std::unique_ptr<Block> block) {
     // If block is going to active chain
-    bool validated = this->_coin_database->validate_block(block->transactions);
+    bool validated = this->_coin_database->validate_block(block->get_transactions());
     bool appended_to_active_chain = block->block_header->previous_block_hash == this->get_last_block_hash();
     if(validated && appended_to_active_chain){
         // On the main chain, so store in coin_database
         // Duplicate it so we don't move the original value
-        auto copied_block = Block::deserialize(Block::serialize(*block));
-        this->_coin_database->store_block(std::move(copied_block->transactions));
+        this->_coin_database->store_block(block->get_transactions());
     }
 
     if (validated)
@@ -67,7 +64,7 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
             height = this->get_active_chain_length() + 1;
         }
         else {
-            std::unique_ptr<BlockRecord> record = this->_block_info_database->get_block_record(block->block_header->previous_block_hash);
+            std::unique_ptr<BlockRecord> record = _block_info_database->get_block_record(block->block_header->previous_block_hash);
             height = record->height + 1;
         }
         // Create the necessary undoBlock
@@ -85,14 +82,12 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
             // A fork has taken over the main chain, so have to undo that
             auto this_block_hash = RathCrypto::hash(Block::serialize(*block));
             auto forked_blocks = get_forked_blocks_stack(this_block_hash);
-            auto get_undo_blocks_queue = this->get_undo_blocks_queue(forked_blocks.size());
-            for (auto& undo_block : get_undo_blocks_queue){
-                // Apply each undo block to the coin_database to reverse the utxo
-                // TODO
+            auto undo_blocks = this->get_undo_blocks_queue(forked_blocks.size());
 
-            }
+            _coin_database->undo_coins(std::move(undo_blocks));
+
             for(auto& forked_block : forked_blocks){
-                _coin_database->store_block(std::move(forked_block->transactions));
+                _coin_database->store_block(forked_block->get_transactions());
             }
         }
     }
@@ -141,6 +136,7 @@ std::vector<std::unique_ptr<Block>> Chain::get_active_chain(uint32_t start, uint
             previous_block_record = _block_info_database->get_block_record(block->block_header->previous_block_hash);
             return_vector.push_back(std::move(block));
         }
+        std::reverse(return_vector.begin(), return_vector.end());
         return return_vector;
     }
     else return return_vector;

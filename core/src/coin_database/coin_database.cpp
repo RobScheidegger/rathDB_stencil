@@ -123,6 +123,9 @@ void CoinDatabase::store_transactions_to_main_cache(std::vector<std::unique_ptr<
         auto hash = RathCrypto::hash(Transaction::serialize(*transaction));
         //Take all of the inputs and remove the spent UTXO
         // TODO
+        for(auto& input : transaction->transaction_inputs){
+
+        }
         // Add all of the outputs to the main cache
         int output_count = transaction->transaction_outputs.size();
         for(int i = 0; i < output_count; i++){
@@ -180,5 +183,29 @@ std::unique_ptr<TransactionOutput> CoinDatabase::get_utxo(uint32_t transaction_h
         auto txo = std::make_unique<TransactionOutput>(coin_record->amounts[index],
                                                        coin_record->public_keys[index]);
         return txo;
+    }
+}
+
+void CoinDatabase::undo_coins(std::vector<std::unique_ptr<UndoBlock>> undo_blocks) {
+    for(auto& undo_block : undo_blocks){
+        int total_records = undo_block->transaction_hashes.size();
+        for(int i = 0; i < total_records; i++){
+            auto transaction_hash = undo_block->transaction_hashes[i];
+            auto& undo_coin_record = undo_block->undo_coin_records[i];
+            for(int j = 0; j < undo_coin_record->public_keys.size(); j++){
+                auto utxo_index = undo_coin_record->utxo[j];
+                auto locator = new CoinLocator(transaction_hash, utxo_index);
+                auto key = CoinLocator::serialize(*locator);
+                if(_main_cache.contains(key)){
+                    _main_cache[key]->is_spent = false;
+                }
+                else {
+                    // Check the database
+                    auto coin_record_serialized = _database->get_safely(std::to_string(transaction_hash));
+                    auto coin_record = CoinRecord::deserialize(coin_record_serialized);
+
+                }
+            }
+        }
     }
 }

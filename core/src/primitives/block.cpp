@@ -95,3 +95,8 @@ std::unique_ptr<Block> Block::deserialize(const std::string& serialized_block) {
     std::unique_ptr<Block> block = std::unique_ptr<Block>( new Block(std::move(block_header_), std::move(transactions_)));
     return std::move(block);
 }
+
+std::vector<std::unique_ptr<Transaction>> Block::get_transactions() {
+
+    return std::move(Block::deserialize(Block::serialize(*this))->transactions);
+}
