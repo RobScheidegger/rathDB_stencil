@@ -241,41 +241,9 @@ std::vector<uint32_t> Chain::get_active_chain_hashes(uint32_t start, uint32_t en
     else return return_vector;
 }
 
-std::unique_ptr<Block> Chain::get_last_block(){
+std::unique_ptr<Block> Chain::get_last_block() {
     // Create a new block from scratch from _active_chain_last_block
-    auto previous_header = *_active_chain_last_block->block_header;
-    auto new_block_header = std::make_unique<BlockHeader>(
-            previous_header.version,
-            previous_header.previous_block_hash,
-            previous_header.merkle_root,
-            previous_header.difficulty_target,
-            previous_header.nonce,
-            previous_header.timestamp);
-    std::vector<std::unique_ptr<Transaction>> new_transactions;
-
-    for(auto& transaction : _active_chain_last_block->transactions){
-        std::vector<std::unique_ptr<TransactionInput>> new_inputs;
-        std::vector<std::unique_ptr<TransactionOutput>> new_outputs;
-        for(auto& input : transaction->transaction_inputs){
-            new_inputs.push_back(std::make_unique<TransactionInput>(input->reference_transaction_hash,
-                                                                    input->signature,
-                                                                    input->utxo_index));
-        }
-        for(auto& output : transaction->transaction_outputs){
-            new_outputs.push_back(std::make_unique<TransactionOutput>(
-                                                                    output->amount,
-                                                                    output->public_key));
-        }
-        new_transactions.push_back(std::move(std::make_unique<Transaction>(
-                std::move(new_inputs),
-                std::move(new_outputs),
-                transaction->version,
-                transaction->lock_time
-                )));
-    }
-
-    auto new_block = std::make_unique<Block>(std::move(new_block_header), std::move(new_transactions));
-    return new_block;
+    return Block::deserialize(Block::serialize(*_active_chain_last_block));
 }
 
 uint32_t Chain::get_last_block_hash(){

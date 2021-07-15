@@ -108,3 +108,50 @@ TEST(Chain, GetActiveChain1To1){
     EXPECT_EQ(blocks.size(), 1);
 }
 
+TEST(Chain, HandleBlockMultipleStack){
+    std::filesystem::remove_all(ChainWriter::get_data_directory());
+
+    Chain chain = Chain();
+
+    std::unique_ptr<Block> genesis_block = chain.get_last_block();
+
+    const int NUM = 10;
+    for(int i = 0; i < NUM; i++){
+        std::unique_ptr<Block> last_block = chain.get_last_block();
+        std::unique_ptr<Block> new_block = make_blockd(std::move(last_block), 0, 0);
+        auto block_hash = RathCrypto::hash(Block::serialize(*new_block));
+        auto transaction_hash = RathCrypto::hash(Transaction::serialize(*new_block->transactions.at(0)));
+        std::cout << "Expected Hash: " << block_hash << " with transaction " << transaction_hash << std::endl;
+        EXPECT_EQ(new_block->transactions.size(), 1);
+        EXPECT_EQ(new_block->transactions.at(0)->transaction_outputs.size(), 1);
+        EXPECT_EQ(new_block->transactions.at(0)->transaction_inputs.size(), 1);
+        chain.handle_block(std::move(new_block));
+        EXPECT_EQ(chain.get_last_block_hash(), block_hash);
+    }
+
+    auto blocks = chain.get_active_chain_hashes(1,NUM);
+    EXPECT_EQ(blocks.size(), NUM);
+    EXPECT_EQ(chain.get_active_chain_length(), NUM + 1);
+}
+
+TEST(Chain, PersistsTransactionHash){
+    std::filesystem::remove_all(ChainWriter::get_data_directory());
+
+    Chain chain = Chain();
+
+    std::unique_ptr<Block> genesis_block = chain.get_last_block();
+    std::unique_ptr<Block> new_block = make_blockd(std::move(genesis_block), 0, 0);
+    auto block_hash = RathCrypto::hash(Block::serialize(*new_block));
+    auto transaction_hash = RathCrypto::hash(Transaction::serialize(*new_block->transactions.at(0)));
+    // auto last_transaction = new_block->transactions.at(0);
+    chain.handle_block(std::move(new_block));
+
+    std::unique_ptr<Block> added_block = chain.get_last_block();
+    auto new_hash = RathCrypto::hash(Block::serialize(*added_block));
+    auto new_transaction_hash = RathCrypto::hash(Transaction::serialize(*added_block->transactions.at(0)));
+
+    EXPECT_EQ(block_hash, new_hash);
+    EXPECT_EQ(transaction_hash, new_transaction_hash);
+
+}
+
