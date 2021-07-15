@@ -60,19 +60,24 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
         // Duplicate it so we don't move the original value
         this->_coin_database->store_block(block->get_transactions());
     }
+    if(appended_to_active_chain){
+        std::cout << "[Chain::handle_block] Block: " << this_block_hash << " going to main chain" << std::endl;
+    }
+    else {
+        std::cout << "[Chain::handle_block] Block: " << this_block_hash << " not going to main chain" << std::endl;
+    }
 
     if (validated || !appended_to_active_chain)
     {
-        std::cout << "[Chain::handle_block] Block: " << this_block_hash << " valid" << std::endl;
+        std::cout << "[Chain::handle_block] Block: " << this_block_hash << " to be stored" << std::endl;
         // Find the height of the block
         int height;
         if(appended_to_active_chain)
         {
-            std::cout << "[Chain::handle_block] Block: " << this_block_hash << " going to main chain" << std::endl;
+
             height = this->get_active_chain_length() + 1;
         }
         else {
-            std::cout << "[Chain::handle_block] Block: " << this_block_hash << " not going to main chain" << std::endl;
             std::unique_ptr<BlockRecord> record = _block_info_database->get_block_record(block->block_header->previous_block_hash);
             height = record->height + 1;
         }
