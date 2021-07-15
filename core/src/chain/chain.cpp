@@ -23,11 +23,12 @@ Chain::Chain() : _active_chain_length(1),
 
 
 std::unique_ptr<UndoBlock> Chain::make_undo_block(const Block& original_block){
+    auto hash = RathCrypto::hash(Block::serialize(original_block));
+    std::cout << "[Chain::make_undo_block] Making undo block for " << hash << std::endl;
     std::vector<uint32_t> transaction_hashes;
     std::vector<std::unique_ptr<UndoCoinRecord>> undo_coin_records;
 
     for(auto& transaction : original_block.transactions) {
-
         auto version = transaction->version;
         auto hash = RathCrypto::hash(Transaction::serialize(*transaction));
         transaction_hashes.push_back(hash);
@@ -60,7 +61,7 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
         this->_coin_database->store_block(block->get_transactions());
     }
 
-    if (validated || true)
+    if (validated || !appended_to_active_chain)
     {
         std::cout << "[Chain::handle_block] Block: " << this_block_hash << " valid" << std::endl;
         // Find the height of the block
