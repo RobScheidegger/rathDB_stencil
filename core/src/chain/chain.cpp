@@ -74,11 +74,14 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
         int height;
         if(appended_to_active_chain)
         {
-
             height = this->get_active_chain_length() + 1;
         }
         else {
             std::unique_ptr<BlockRecord> record = _block_info_database->get_block_record(block->block_header->previous_block_hash);
+            if(record == nullptr){
+                std::cout << "[Chain::handle_block] Error: Could not find block record for " << block->block_header->previous_block_hash << std::endl;
+                return;
+            }
             height = record->height + 1;
         }
         // Create the necessary undoBlock
