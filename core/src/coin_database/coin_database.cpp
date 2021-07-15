@@ -141,6 +141,9 @@ void CoinDatabase::store_transactions_to_main_cache(std::vector<std::unique_ptr<
                 // Have to check the database
                 // Get the record for a given transaction
                 std::string transaction_hash = std::to_string(input->reference_transaction_hash);
+                if(!(_database->contains(transaction_hash))){
+                    continue;
+                }
                 auto db_result = _database->get_safely(transaction_hash);
                 auto coin_record = CoinRecord::deserialize(db_result);
                 auto it = std::find(coin_record->utxo.begin(),
@@ -184,7 +187,11 @@ void CoinDatabase::flush_main_cache() {
             auto coin_record = CoinRecord::deserialize(_database->get_safely(transaction_hash));
             if(entry.second->is_spent){
                 // Needs to be removed
+                if(!(_database->contains(transaction_hash))){
+                    continue;
+                }
                 auto db_result = _database->get_safely(transaction_hash);
+
                 auto coin_record = CoinRecord::deserialize(db_result);
                 auto it = std::find(coin_record->utxo.begin(),
                                     coin_record->utxo.end(),
@@ -232,6 +239,9 @@ std::unique_ptr<TransactionOutput> CoinDatabase::get_utxo(uint32_t transaction_h
     else {
         //Search database
         auto string_hash = std::to_string(transaction_hash);
+        if(!(_database->contains(string_hash))){
+            return nullptr;
+        }
         auto db_result = _database->get_safely(string_hash);
         auto coin_record = CoinRecord::deserialize(db_result);
         auto it = std::find(coin_record->utxo.begin(),
@@ -261,6 +271,9 @@ void CoinDatabase::undo_coins(std::vector<std::unique_ptr<UndoBlock>> undo_block
                 }
                 else {
                     // Check the database
+                    if(!(_database->contains(std::to_string(transaction_hash)))){
+                        continue;
+                    }
                     auto db_result = _database->get_safely(std::to_string(transaction_hash));
                     auto coin_record = CoinRecord::deserialize(db_result);
                     auto it = std::find(coin_record->utxo.begin(),
@@ -271,7 +284,6 @@ void CoinDatabase::undo_coins(std::vector<std::unique_ptr<UndoBlock>> undo_block
                     coin_record->amounts.erase(coin_record->amounts.begin() + index);
                     coin_record->public_keys.erase(coin_record->public_keys.begin() + index);
                     _database->put_safely(std::to_string(transaction_hash), CoinRecord::serialize(*coin_record));
-
                 }
             }
         }
