@@ -77,7 +77,9 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
             height = this->get_active_chain_length() + 1;
         }
         else {
-            std::unique_ptr<BlockRecord> record = _block_info_database->get_block_record(block->block_header->previous_block_hash);
+            auto previous_hash = block->block_header->previous_block_hash;
+            std::cout << "[Chain::handle_block] Looking for previous block " << previous_hash << std::endl;
+            std::unique_ptr<BlockRecord> record = _block_info_database->get_block_record(previous_hash);
             if(record == nullptr){
                 std::cout << "[Chain::handle_block] Error: Could not find block record for " << block->block_header->previous_block_hash << std::endl;
                 return;
