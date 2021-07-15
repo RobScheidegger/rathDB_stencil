@@ -11,10 +11,13 @@ Chain::Chain() : _active_chain_length(1),
 
     const auto block_record = _chain_writer->store_block(*_active_chain_last_block, *undo_genesis_block, 0);
 
-
     _block_info_database->store_block_record(RathCrypto::hash(BlockRecord::serialize(*block_record)),*block_record);
 
-    _coin_database->store_block(std::move(_active_chain_last_block->transactions));
+    auto duplicate_genesis_block = Block::deserialize(Block::serialize(*_active_chain_last_block));
+
+    _coin_database->store_block(std::move(duplicate_genesis_block->transactions));
+
+    _active_chain_length = 1;
 }
 
 
@@ -50,7 +53,9 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
     bool appended_to_active_chain = block->block_header->previous_block_hash == this->get_last_block_hash();
     if(validated && appended_to_active_chain){
         // On the main chain, so store in coin_database
-        this->_coin_database->store_block(std::move(block->transactions));
+        // Duplicate it so we don't move the original value
+        auto copied_block = Block::deserialize(Block::serialize(*block));
+        this->_coin_database->store_block(std::move(copied_block->transactions));
     }
 
     if (validated)
