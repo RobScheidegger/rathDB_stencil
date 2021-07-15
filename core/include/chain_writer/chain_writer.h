@@ -49,11 +49,11 @@ private:
     static const uint16_t _max_undo_file_size;
 public:
     ChainWriter();
-    
-    static std::string get_data_directory() {return _data_directory;}
+
     static std::string get_file_extension() {return _file_extension;}
     static std::string get_block_filename() {return _block_filename;}
     static std::string get_undo_filename() {return _undo_filename;}
+    static std::string get_data_directory() {return _data_directory;}
     static uint16_t get_max_block_file_size() {return _max_block_file_size;}
     static uint16_t get_max_undo_file_size() {return _max_undo_file_size;}
 
