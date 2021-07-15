@@ -90,3 +90,21 @@ TEST(Chain, HandleValidBlock23) {
     EXPECT_EQ(ret_block->transactions.at(0)->transaction_outputs.at(0)->amount, 100);
 }
 
+TEST(Chain, GetActiveChainHashes1To1){
+    std::filesystem::remove_all(ChainWriter::get_data_directory());
+
+    Chain chain = Chain();
+
+    auto hashes = chain.get_active_chain_hashes(1,1);
+    EXPECT_EQ(hashes.size(), 1);
+}
+
+TEST(Chain, GetActiveChain1To1){
+    std::filesystem::remove_all(ChainWriter::get_data_directory());
+
+    Chain chain = Chain();
+
+    auto blocks = chain.get_active_chain(1,1);
+    EXPECT_EQ(blocks.size(), 1);
+}
+

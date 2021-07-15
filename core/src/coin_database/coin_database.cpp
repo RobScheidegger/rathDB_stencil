@@ -73,6 +73,8 @@ bool CoinDatabase::validate_transaction(const Transaction& transaction)
             }
         }
         if(!found) {
+            std::cout << "[CoinDatabase::validate_transaction] Transaction Invalid: UTXO not found for TX input referencing: " << hash <<
+                " at index "<< input.utxo_index << std::endl;
             return false;
         }
     }

@@ -7,11 +7,13 @@ Chain::Chain() : _active_chain_length(1),
     _coin_database(std::make_unique<CoinDatabase>()),
     _chain_writer(std::make_unique<ChainWriter>()) {
 
+    auto genesis_block_hash = get_last_block_hash();
     auto undo_genesis_block = make_undo_block(*_active_chain_last_block);
+    std::cout << "[Chain::constructor] Storing genesis block with hash: " << genesis_block_hash << std::endl;
+    const auto block_record = _chain_writer->store_block(*_active_chain_last_block, *undo_genesis_block, 1);
 
-    const auto block_record = _chain_writer->store_block(*_active_chain_last_block, *undo_genesis_block, 0);
 
-    _block_info_database->store_block_record(RathCrypto::hash(BlockRecord::serialize(*block_record)),*block_record);
+    _block_info_database->store_block_record(genesis_block_hash,*block_record);
 
     _coin_database->store_block(_active_chain_last_block->get_transactions());
 
@@ -85,7 +87,7 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
         if(appended_to_active_chain)
         {
             this->_active_chain_length++;
-            this->_active_chain_last_block.swap(block);
+            this->_active_chain_last_block = std::move(block);
         }
         if(height > _active_chain_length)
         {
@@ -118,6 +120,7 @@ uint32_t Chain::get_chain_length(uint32_t block_hash){
     std::cout << "[Chain::get_chain_length] Getting Chain length for block " << block_hash << std::endl;
     auto block_record = _block_info_database->get_block_record(block_hash);
     if(block_record == NULL){
+        std::cout << "[Chain::get_chain_length] Block " << block_hash << " not found" << std::endl;
         return 0;
     }
     else return block_record->height;
@@ -169,15 +172,34 @@ std::vector<uint32_t> Chain::get_active_chain_hashes(uint32_t start, uint32_t en
     if(end < start)
         return return_vector;
 
-    auto last_block_record = _block_info_database->get_block_record(RathCrypto::hash(Block::serialize(*_active_chain_last_block)));
+    auto last_hash = RathCrypto::hash(Block::serialize(*_active_chain_last_block));
+    std::cout << "[Chain::get_active_chain_hashes] Getting record for " << last_hash << std::endl;
+    auto last_block_record = _block_info_database->get_block_record(last_hash);
+
+    if(last_block_record == nullptr){
+        std::cout << "[Chain::get_active_chain_hashes] Something went terribly wrong: "
+                     "record for active chain last block not found " << std::endl;
+    }
+    std::cout << "[Chain::get_active_chain_hashes] Starting main height: " << last_block_record->height << std::endl;
+    int current_height = last_block_record->height;
+    auto current_hash = last_hash;
+    while(current_height >= start) {
+        if (current_height <= end){
+            return_vector.push_back(current_hash);
+        }
+        std::cout << "[Chain::get_active_chain_hashes] Getting record for " << current_hash << " at height " << current_height << std::endl;
+        auto current_record = _block_info_database->get_block_record(current_hash);
+
+        current_hash = current_record->block_header->previous_block_hash;
+        current_height--;
+    }
     if(last_block_record->height <= end && last_block_record->height >= start)
     {
         auto height = last_block_record->height;
         std::unique_ptr<BlockRecord> previous_block_record = std::move(last_block_record);
-        for(int i = height; i > start && i >= 0; i--){
+        for(int i = height; i >= start && i >= 1; i--){
 
-            return_vector.push_back(previous_block_record->block_header->previous_block_hash);
-            previous_block_record = _block_info_database->get_block_record(previous_block_record->block_header->previous_block_hash);
+
         }
         return return_vector;
     }
