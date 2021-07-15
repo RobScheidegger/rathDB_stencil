@@ -111,6 +111,8 @@ bool CoinDatabase::validate_and_store_transaction(std::unique_ptr<Transaction> t
 
 void CoinDatabase::store_transaction(std::unique_ptr<Transaction> transaction)
 {
+    auto hash = RathCrypto::hash(Transaction::serialize(*transaction));
+    std::cout << "[CoinDatabase::store_transaction] Storing to mempool: " <<  hash << std::endl;
     store_transaction_in_mempool(std::move(transaction));
 }
 
@@ -124,6 +126,7 @@ void CoinDatabase::store_transactions_to_main_cache(std::vector<std::unique_ptr<
 
     for(auto& transaction : transactions){
         auto hash = RathCrypto::hash(Transaction::serialize(*transaction));
+        std::cout << "[CoinDatabase::store_transactions_to_main_cache] Storing to main cache: " <<  hash << std::endl;
         //Take all of the inputs and remove the spent UTXO
         // TODO
         for(auto& input : transaction->transaction_inputs){
