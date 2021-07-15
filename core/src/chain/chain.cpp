@@ -35,6 +35,9 @@ std::unique_ptr<UndoBlock> Chain::make_undo_block(const Block& original_block){
                 << " at pos " << std::to_string(input->utxo_index) << " from CoinDatabase" << std::endl;
             // For each input, find the corresponding UTXO that it consumed and add to utxo, amts, public_keys
             auto txo = _coin_database->get_utxo(input->reference_transaction_hash, input->utxo_index);
+            if(txo == nullptr){
+                continue;
+            }
             utxo.push_back(input->utxo_index);
             amounts.push_back(txo->amount);
             public_keys.push_back(txo->public_key);
