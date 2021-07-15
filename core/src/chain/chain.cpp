@@ -75,44 +75,68 @@ void Chain::handle_block(std::unique_ptr<Block> block) {
         if(appended_to_active_chain)
         {
             height = this->get_active_chain_length() + 1;
+
+            auto undoBlock = make_undo_block(*block);
+
+            std::cout << "[Chain::handle_block] Storing Block: " << this_block_hash << " to disk" << std::endl;
+            auto block_record =_chain_writer->store_block(*block, *undoBlock, height);
+            std::cout << "[Chain::handle_block] Storing Block Record for " << this_block_hash << " to BlockInfoDatabase" << std::endl;
+            //Also add it to the block info database
+            _block_info_database->store_block_record(this_block_hash, *block_record);
+            this->_active_chain_length++;
+            this->_active_chain_last_block = std::move(block);
         }
         else {
             auto previous_hash = block->block_header->previous_block_hash;
             std::cout << "[Chain::handle_block] Looking for previous block " << previous_hash << std::endl;
             std::unique_ptr<BlockRecord> record = _block_info_database->get_block_record(previous_hash);
             if(record == nullptr){
-                std::cout << "[Chain::handle_block] Error: Could not find block record for " << block->block_header->previous_block_hash << std::endl;
+                std::cout << "[Chain::handle_block] Error: Could not find block record for " << previous_hash << std::endl;
                 return;
             }
             height = record->height + 1;
-        }
-        // Create the necessary undoBlock
-        auto undoBlock = make_undo_block(*block);
+            auto file_info = _chain_writer->write_block(Block::serialize(*block));
+            std::cout << "[Chain::handle_block] Storing Block Record for " << this_block_hash << " to BlockInfoDatabase" << std::endl;
+            auto empty_info = new FileInfo("",0,0);
+            auto block_record = new BlockRecord(
+                    std::move(BlockHeader::deserialize(BlockHeader::serialize(*block->block_header))),
+                    block->transactions.size(),
+                    height,
+                    *file_info.get(),
+                    *empty_info
+                    );
+            //Also add it to the block info database
+            _block_info_database->store_block_record(this_block_hash, *block_record);
 
-        std::cout << "[Chain::handle_block] Storing Block: " << this_block_hash << " to disk" << std::endl;
-        auto block_record =_chain_writer->store_block(*block, *undoBlock, height);
-        std::cout << "[Chain::handle_block] Storing Block Record for " << this_block_hash << " to BlockInfoDatabase" << std::endl;
-        //Also add it to the block info database
-        _block_info_database->store_block_record(this_block_hash, *block_record);
+            if(height > _active_chain_length)
+            {
+                // A fork has taken over the main chain, so have to undo that
+                std::cout << "[Chain::handle_block] Block: " << this_block_hash << " created override fork" << std::endl;
+                auto forked_blocks = get_forked_blocks_stack(this_block_hash);
+                auto undo_blocks = this->get_undo_blocks_queue(forked_blocks.size());
 
-        if(appended_to_active_chain)
-        {
-            this->_active_chain_length++;
-            this->_active_chain_last_block = std::move(block);
-        }
-        if(height > _active_chain_length)
-        {
-            // A fork has taken over the main chain, so have to undo that
-            std::cout << "[Chain::handle_block] Block: " << this_block_hash << " created override fork" << std::endl;
-            auto forked_blocks = get_forked_blocks_stack(this_block_hash);
-            auto undo_blocks = this->get_undo_blocks_queue(forked_blocks.size());
+                _coin_database->undo_coins(std::move(undo_blocks));
 
-            _coin_database->undo_coins(std::move(undo_blocks));
-
-            for(auto& forked_block : forked_blocks){
-                auto forked_hash = RathCrypto::hash(Block::serialize(*forked_block));
-                std::cout << "[Chain::handle_block] Storing Block " << forked_hash << " to CoinDatabase" << std::endl;
-                _coin_database->store_block(forked_block->get_transactions());
+                for(auto& forked_block : forked_blocks){
+                    auto forked_hash = RathCrypto::hash(Block::serialize(*forked_block));
+                    std::cout << "[Chain::handle_block] Storing Block " << forked_hash << " to CoinDatabase" << std::endl;
+                    _coin_database->store_block(forked_block->get_transactions());
+                    // Also need to make undo blocks and validate
+                    auto existing_record = _block_info_database->get_block_record(this_block_hash);
+                    auto undo_block = make_undo_block(*forked_block);
+                    auto undo_file_info = _chain_writer->write_undo_block(UndoBlock::serialize(*undo_block));
+                    const std::string& undo_name = undo_file_info->file_name;
+                    auto new_record = new BlockRecord(
+                            std::move(BlockHeader::deserialize(BlockHeader::serialize(*existing_record->block_header))),
+                            existing_record->num_transactions,
+                            existing_record->height,
+                            *new FileInfo(existing_record->block_file_stored, existing_record->block_offset_start, existing_record->block_offset_end),
+                            *undo_file_info.get()
+                            );
+                    _block_info_database->store_block_record(this_block_hash, *new_record);
+                }
+                _active_chain_length++;
+                _active_chain_last_block = std::move(block);
             }
         }
     }
