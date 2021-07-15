@@ -289,8 +289,7 @@ uint32_t Chain::get_active_chain_length() const{
 std::vector<std::shared_ptr<Block>> Chain::get_forked_blocks_stack(uint32_t starting_hash){
     std::cout << "[Chain::get_forked_blocks_stack] Getting stack from " << starting_hash << std::endl;
     std::vector<std::shared_ptr<Block>> return_blocks;
-    auto min_index = _active_chain_length < 8 ? 1 : _active_chain_length - 7;
-    auto main_chain_hashes = get_active_chain_hashes(min_index, _active_chain_length);
+    auto main_chain_hashes = get_active_chain_hashes(1, _active_chain_length);
     std::set<uint32_t> hashes_set;
     for(uint32_t hash : main_chain_hashes){
         hashes_set.insert(hash);
@@ -298,10 +297,13 @@ std::vector<std::shared_ptr<Block>> Chain::get_forked_blocks_stack(uint32_t star
     uint32_t next_hash = starting_hash;
     while(!hashes_set.contains(next_hash)){
         auto record = _block_info_database->get_block_record(next_hash);
+        std::cout << "[Chain::get_forked_blocks_stack] Found forked block: " << next_hash << std::endl;
         auto fileInfo = new FileInfo(record->block_file_stored, record->block_offset_start, record->block_offset_end);
         auto block = Block::deserialize(_chain_writer->read_block(*fileInfo));
         return_blocks.push_back(std::move(block));
+        next_hash =
     }
+    std::cout << "[Chain::get_forked_blocks_stack] Found common ancestor of : " << next_hash << std::endl;
 
     return return_blocks;
 }
