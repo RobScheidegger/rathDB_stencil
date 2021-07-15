@@ -157,6 +157,7 @@ void CoinDatabase::store_transaction_in_mempool(std::unique_ptr<Transaction> tra
 }
 
 void CoinDatabase::flush_main_cache() {
+    std::cout << "[CoinDatabase::flush_main_cache] Flushing cache " << std::endl;
     for(auto& entry : _main_cache){
         if(entry.second->is_spent){
             // Need to remove record from the database
