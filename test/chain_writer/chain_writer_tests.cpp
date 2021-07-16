@@ -96,3 +96,25 @@ TEST(ChainWriter, WritesReadsMultiple) {
     EXPECT_EQ(Block::serialize(*result_block), Block::serialize(*block));
     EXPECT_EQ(Block::serialize(*result_block_2), Block::serialize(*block_2));
 }
+
+TEST(ChainWriter, WritesReadsUndoBlock) {
+
+    std::filesystem::remove_all(ChainWriter::get_data_directory());
+
+    std::unique_ptr<ChainWriter> writer = std::make_unique<ChainWriter>();
+
+    std::unique_ptr<UndoBlock> block = std::make_unique<UndoBlock>(
+            std::vector<uint32_t>(),
+            std::vector<std::unique_ptr<UndoCoinRecord>>()
+    );
+
+    // Create test block
+    auto info = writer->write_undo_block(UndoBlock::serialize(*block));
+
+    auto serialized_block = writer->read_undo_block(*info);
+
+    auto result_block = UndoBlock::deserialize(serialized_block);
+
+    EXPECT_EQ(UndoBlock::serialize(*result_block), UndoBlock::serialize(*block));
+
+}

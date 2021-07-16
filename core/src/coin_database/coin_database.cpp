@@ -63,7 +63,10 @@ bool CoinDatabase::validate_transaction(const Transaction& transaction)
     }
     for (auto& input : inputs_not_in_cache) {
         std::string hash = std::to_string(input.reference_transaction_hash);
-        const auto &coin_record_serialized = this->_database->get_safely(hash);
+        if(!_database->contains(hash)){
+            return false;
+        }
+        auto coin_record_serialized = this->_database->get_safely(hash);
         auto coin_record = CoinRecord::deserialize(coin_record_serialized);
         bool found = false;
 

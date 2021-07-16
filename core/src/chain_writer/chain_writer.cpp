@@ -85,7 +85,15 @@ std::unique_ptr<FileInfo> ChainWriter::write_undo_block(std::string serialized_b
                                 std::to_string(_current_undo_file_number) + "." +
                                 get_file_extension();
 
-    auto file = fopen(file_to_write.c_str(), "ab+");
+    const auto& write_file = file_to_write.c_str();
+    auto file = fopen(write_file, "at");
+    if(!std::filesystem::is_directory(get_data_directory()))
+    {
+        std::filesystem::create_directory(get_data_directory());
+    }
+    if(!file){
+        file = fopen(write_file, "wt");
+    }
     fwrite(serialized_block.c_str(), sizeof(char), block_length, file);
     fclose(file);
 

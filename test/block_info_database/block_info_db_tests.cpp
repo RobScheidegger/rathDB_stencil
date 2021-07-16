@@ -10,6 +10,7 @@
 #include <gtest/gtest.h>
 #include <block_record.h>
 #include <undo_block.h>
+#include <block_info_database.h>
 
 TEST(BlockRecord, Serializaiton) {
     std::unique_ptr<BlockHeader> block_header = std::make_unique<BlockHeader>();
@@ -36,3 +37,49 @@ TEST(UndoBlock, Serializaiton) {
     EXPECT_EQ(undo_block.transaction_hashes.at(0), deserialized_undo_block->transaction_hashes.at(0));
     EXPECT_EQ(deserialized_undo_block->transaction_hashes.at(0), 9999);
 }
+
+TEST(BlockInfoDatabase, PutThenGetEqual){
+    auto db = std::make_unique<BlockInfoDatabase>();
+    auto block_record = new BlockRecord(
+            std::move(std::make_unique<BlockHeader>(1,2,3,4,5,6)),
+            1, 2, *new FileInfo("Test Name", 20, 1), *new FileInfo("Test 2",0,19)
+            );
+    db->store_block_record(192, *block_record);
+
+    auto result_Record = db->get_block_record(192);
+
+    EXPECT_EQ(BlockRecord::serialize(*result_Record), BlockRecord::serialize(*block_record));
+}
+
+TEST(BlockInfoDatabase, NullOnCantFind){
+    auto db = std::make_unique<BlockInfoDatabase>();
+    auto block_record = new BlockRecord(
+            std::move(std::make_unique<BlockHeader>(1,2,3,4,5,6)),
+            1, 2, *new FileInfo("Test Name", 20, 1), *new FileInfo("Test 2",0,19)
+    );
+    db->store_block_record(192, *block_record);
+
+    EXPECT_TRUE(db->get_block_record(1000) == nullptr);
+}
+
+
+TEST(BlockInfoDatabase, OverwriteExistingRecord){
+    auto db = std::make_unique<BlockInfoDatabase>();
+    auto block_record = new BlockRecord(
+            std::move(std::make_unique<BlockHeader>(1,2,3,4,5,6)),
+            1, 2, *new FileInfo("Test Name", 20, 1), *new FileInfo("Test 2",0,19)
+    );
+    db->store_block_record(192, *block_record);
+
+    auto block_record_2 = new BlockRecord(
+            std::move(std::make_unique<BlockHeader>(1,2,3,4,5,6)),
+            100, 2, *new FileInfo("Test Name", 20, 1), *new FileInfo("Test 2",0,19)
+    );
+
+    db->store_block_record(192, *block_record_2);
+
+    EXPECT_EQ(db->get_block_record(192)->num_transactions, 100);
+}
+
+
+
